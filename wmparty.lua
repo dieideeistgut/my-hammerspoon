@@ -17,6 +17,8 @@
 
 hs.window.animationDuration = 0.2
 
+switcher_browsers = hs.window.switcher.new{'Safari','Google Chrome'}
+
 local moveModifiers = {"alt", "ctrl"}
 local selectNumberModifiers = {"alt", "ctrl", "cmd"}
 
@@ -268,4 +270,8 @@ end)
 
 hs.hotkey.bind(moveModifiers, "return", function()
   hs.grid.toggleShow()
+end)
+
+hs.hotkey.bind(moveModifiers, "tab", function()
+  switcher_browsers:previous()
 end)
