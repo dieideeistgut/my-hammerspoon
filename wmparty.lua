@@ -20,12 +20,8 @@ hs.window.animationDuration = 0.2
 switcher_browsers = hs.window.switcher.new{'Safari','Google Chrome'}
 
 local moveModifiers = {"alt", "ctrl"}
-local selectNumberModifiers = {"alt", "ctrl", "cmd"}
-
 local numbers = {}
-
 local fullScreenSizes = {1, 1.5, 2}
-
 local GRID = {w = 12, h = 6}
 hs.grid.setGrid(GRID.w .. 'x' .. GRID.h)
 
@@ -44,7 +40,6 @@ hs.grid.MARGINY = 20
 hs.grid.ui.textSize = 16
 hs.grid.ui.cellStrokeWidth = 1
 hs.grid.ui.highlightStrokeWidth = 1
-hs.grid.ui.fontName = 'IBM Plex Sans Condensed'
 hs.grid.ui.cellStrokeColor = {1,1,1,0.125}
 hs.grid.ui.textColor = {1,1,1,0}
 hs.grid.ui.cellColor = {0,0,0,0.0}
@@ -131,43 +126,7 @@ function rightTwoThirds () goTo(1, 0, 3/2, 1) end
 function focus () goTo(3/4, 1/2, 2, 2) end
 function fullScreen () goTo(0, 0, 1, 1) end
 
-function createFilter (x, x2, y)
-  return hs.window.filter.new(function (win)
-    local maxX = x * GRID.w / 3
-    local maxX2 = x2 * GRID.w / 2
-    local maxY = y * GRID.h / 2
-    local cell = hs.grid.get(win)
-    return (cell.x == maxX or cell.x == maxX2) and cell.y == maxY
-  end)
-end
-
-local filter1 = createFilter(0, 0, 0)
-local filter2 = createFilter(1, 1, 0)
-local filter3 = createFilter(2, 1, 0)
-local filter4 = createFilter(0, 0, 1)
-local filter5 = createFilter(1, 1, 1)
-local filter6 = createFilter(2, 1, 1)
-
-function activateFilter(filter)
-  return function ()
-    local windows = filter:getWindows()
-    if windows[1] then
-      windows[1]:focus()
-    end
-  end
-end
-
-hs.hotkey.bind(selectNumberModifiers, "1", activateFilter(filter1))
-hs.hotkey.bind(selectNumberModifiers, "2", activateFilter(filter2))
-hs.hotkey.bind(selectNumberModifiers, "3", activateFilter(filter3))
-hs.hotkey.bind(selectNumberModifiers, "4", activateFilter(filter4))
-hs.hotkey.bind(selectNumberModifiers, "5", activateFilter(filter5))
-hs.hotkey.bind(selectNumberModifiers, "6", activateFilter(filter6))
-
-hs.hotkey.bind(moveModifiers, "return", function ()
-  focus()
-end)
-
+-- down first
 hs.hotkey.bind(moveModifiers, "down", function ()
   pressed.down = true
   if pressed.left and pressed.right and pressed.up then
@@ -189,6 +148,7 @@ end, function ()
   pressed.down = false
 end)
 
+-- up first
 hs.hotkey.bind(moveModifiers, "up", function ()
   pressed.up = true
   if pressed.down and pressed.left and pressed.right then
@@ -210,6 +170,7 @@ end, function ()
   pressed.up = false
 end)
 
+-- right first
 hs.hotkey.bind(moveModifiers, "right", function ()
   pressed.right = true
   if pressed.down and pressed.left and pressed.up then
@@ -235,6 +196,7 @@ end, function ()
   pressed.right = false
 end)
 
+-- left first
 hs.hotkey.bind(moveModifiers, "left", function ()
   pressed.left = true
   if pressed.down and pressed.right and pressed.up then
@@ -260,18 +222,22 @@ end, function ()
   pressed.left = false
 end)
 
+-- FS init steps
 hs.hotkey.bind(moveModifiers, "f", function()
   nextFullScreenStep()
 end)
 
+-- Center with C
 hs.hotkey.bind(moveModifiers, "c", function()
   center()
 end)
 
+-- DEBUG: show grid
 hs.hotkey.bind(moveModifiers, "return", function()
   hs.grid.toggleShow()
 end)
 
+-- Tabswitcher for browser windows
 hs.hotkey.bind(moveModifiers, "tab", function()
   switcher_browsers:previous()
 end)
