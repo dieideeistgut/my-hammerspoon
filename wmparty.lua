@@ -15,7 +15,7 @@
 -- OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 -- DEALINGS IN THE SOFTWARE.
 
-hs.window.animationDuration = 0.2
+hs.window.animationDuration = false
 
 switcher_browsers = hs.window.switcher.new{'Safari','Google Chrome'}
 
@@ -223,8 +223,13 @@ end, function ()
 end)
 
 -- FS init steps
-hs.hotkey.bind(moveModifiers, "f", function()
+hs.hotkey.bind(moveModifiers, "d", function()
   nextFullScreenStep()
+end)
+
+-- FS init Full
+hs.hotkey.bind(moveModifiers, "f", function()
+  fullScreen()
 end)
 
 -- Center with C
