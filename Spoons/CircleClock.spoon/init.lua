@@ -40,13 +40,13 @@ local function updateClock()
 end
 
 function obj:init()
-    local cscreen = hs.screen.mainScreen()
+    local cscreen = hs.screen.primaryScreen()
     local cres = cscreen:fullFrame()
     self.canvas = hs.canvas.new({
-        x = cres.w-128-20,
-        y = cres.h-128-20,
-        w = 128,
-        h = 128
+        x = cres.w-128-60,
+        y = cres.h-128-60,
+        w = 160,
+        h = 160
     }):show()
     obj.canvas:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces)
     obj.canvas:level(hs.canvas.windowLevels.floating)
@@ -60,7 +60,7 @@ function obj:init()
     obj.canvas[2] = {
         id = "watch_image",
         type = "image",
-        image = hs.image.imageFromPath(self.spoonPath .. "/watchbg_alt_new.png"),
+        image = hs.image.imageFromPath(self.spoonPath .. "/watchbg_sr.png"),
         opacity = 0.4,
     }
     obj.canvas[3] = {
@@ -74,7 +74,7 @@ function obj:init()
         id = "watch_sechand",
         type = "arc",
         radius = "46%",
-        fillColor = {hex="#9E9E9E", alpha=0.14},
+        fillColor = {hex="#9E9E9E", alpha=0.10},
         strokeColor = {hex="#9E9E9E", alpha=0.0},
         endAngle = 0,
     }
