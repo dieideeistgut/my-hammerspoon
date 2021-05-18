@@ -60,8 +60,8 @@ function obj:init()
     obj.canvas[2] = {
         id = "watch_image",
         type = "image",
-        image = hs.image.imageFromPath(self.spoonPath .. "/watchbg_sr.png"),
-        opacity = 0.4,
+        image = hs.image.imageFromPath(self.spoonPath .. "/watchbg_alt.png"),
+        opacity = 0.05,
     }
     obj.canvas[3] = {
         id = "watch_circle",
@@ -74,8 +74,8 @@ function obj:init()
         id = "watch_sechand",
         type = "arc",
         radius = "46%",
-        fillColor = {hex="#9E9E9E", alpha=0.10},
-        strokeColor = {hex="#9E9E9E", alpha=0.0},
+        fillColor = {hex="#ffffff", alpha=0.20},
+        strokeColor = {hex="#ffffff", alpha=0.1},
         endAngle = 0,
     }
     obj.canvas[5] = {
@@ -93,7 +93,7 @@ function obj:init()
         radius = "24%",
         arcRadii = false,
         strokeWidth = 8,
-        strokeColor = {hex="#8f27ec", alpha=0.75},
+        strokeColor = {hex="#bb4019", alpha=1},
         endAngle = 0,
     }
     obj.canvas[7] = {
@@ -111,7 +111,7 @@ function obj:init()
         radius = "30%",
         arcRadii = false,
         strokeWidth = 6,
-        strokeColor = {hex="#56daec", alpha=0.75},
+        strokeColor = {hex="#bd582c", alpha=1},
         endAngle = 0,
     }
     if obj.timer == nil then
